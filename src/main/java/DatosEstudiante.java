@@ -22,23 +22,18 @@ public class DatosEstudiante {
         return listaRuts;
     }
 
-    public List<String> extraerRut(DatosEstudiante datosEstudiante, String rutaArchivo){
-        GestorDatosEstudiante.leerArchivoEstudiantes(datosEstudiante,rutaArchivo);
-        List<String> rutEstudiantes = new ArrayList<>();
-        for (Estudiante estudiante : this.estudiantes){
-            rutEstudiantes.add(estudiante.getRut());
+    public String[] extraerRut(){
+        String[] rutEstudiantes = new String[this.estudiantes.size()];
+        for (int i = 0; i < this.estudiantes.size(); i++) {
+            rutEstudiantes[i] = this.estudiantes.get(i).getRut();
         }
-        return rutEstudiantes;
-    }
-
-    public String[] obtenerRutEstudiantes(){
-        DatosEstudiante datosEstudiante = new DatosEstudiante();
-        String[] rutEstudiantes = (String[]) datosEstudiante.extraerRut(datosEstudiante,"target/"+"ICC264.txt").toArray();
         return rutEstudiantes;
     }
 
     public void agregarEstudiantes(String nombre, String rut, String email){
         Estudiante estudiante = new Estudiante(nombre,rut,email);
-        this.estudiantes.add(estudiante);
+        if (ValidadorRut.validarRut(estudiante.getRut())){
+            this.estudiantes.add(estudiante);
+        }
     }
 }

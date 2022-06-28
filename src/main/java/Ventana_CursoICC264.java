@@ -8,12 +8,10 @@ public class Ventana_CursoICC264 extends Ventana{
     JLabel etiquetaEmail;
     JTextField textoNombre;
     JTextField textoEmail;
-    DatosEstudiante datosEstudiante;
 
-    public Ventana_CursoICC264(String nombre, int largoX, int largoY, DatosEstudiante datosEstudiante) {
+    public Ventana_CursoICC264(String nombre, int largoX, int largoY) {
         super(nombre, largoX, largoY);
         iniciarComponentes();
-        this.datosEstudiante = datosEstudiante;
     }
 
     private void iniciarComponentes() {
@@ -42,7 +40,8 @@ public class Ventana_CursoICC264 extends Ventana{
     }
 
     private void listaDesplegable() {
-        listaRut = generarListaDesplegable(datosEstudiante.obtenerRutEstudiantes(),20,40,100,20);
+        DatosEstudiante datosEstudiante = GestorDatosEstudiante.leerArchivoEstudiantes(new DatosEstudiante(),"target/ICC264.txt");
+        listaRut = generarListaDesplegable(datosEstudiante.extraerRut(),20,40,100,20);
         this.add(listaRut);
     }
 
