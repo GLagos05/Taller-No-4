@@ -9,6 +9,7 @@ public class Ventana_AgregarEstudianteICC264 extends Ventana{
     JTextField textoNombre;
     JTextField textoRut;
     JTextField textoEmail;
+    DatosEstudiante datosEstudiante;
 
     protected Ventana_AgregarEstudianteICC264(String nombre, int largoX, int largoY) {
         super(nombre, largoX, largoY);
@@ -51,7 +52,7 @@ public class Ventana_AgregarEstudianteICC264 extends Ventana{
         botonAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                datosEstudiante.agregarEstudiantes(textoNombre.getText(),textoRut.getText(),textoEmail.getText());
             }
         });
         botonCancelar.addActionListener(new ActionListener() {

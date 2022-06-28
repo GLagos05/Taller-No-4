@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 public class Ventana_CursoICC264 extends Ventana{
     JComboBox listaRut;
@@ -9,11 +8,12 @@ public class Ventana_CursoICC264 extends Ventana{
     JLabel etiquetaEmail;
     JTextField textoNombre;
     JTextField textoEmail;
-    List<Estudiante> estudiantes;
+    DatosEstudiante datosEstudiante;
 
-    protected Ventana_CursoICC264(String nombre, int largoX, int largoY) {
+    public Ventana_CursoICC264(String nombre, int largoX, int largoY, DatosEstudiante datosEstudiante) {
         super(nombre, largoX, largoY);
         iniciarComponentes();
+        this.datosEstudiante = datosEstudiante;
     }
 
     private void iniciarComponentes() {
@@ -42,8 +42,8 @@ public class Ventana_CursoICC264 extends Ventana{
     }
 
     private void listaDesplegable() {
-        //listaRut = generarListaDesplegable(,20,40,100,20);
-        //this.add(listaRut);
+        listaRut = generarListaDesplegable(datosEstudiante.obtenerRutEstudiantes(),20,40,100,20);
+        this.add(listaRut);
     }
 
     private void botones() {
@@ -53,7 +53,7 @@ public class Ventana_CursoICC264 extends Ventana{
         botonNuevoEstudiante.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Ventana_AgregarEstudianteICC264 ventana_agregarEstudianteICC264 = new Ventana_AgregarEstudianteICC264("Agregar Estudiante ICC264",500,500);
             }
         });
     }
