@@ -1,8 +1,8 @@
 public class Estudiante extends Persona{
     private String email;
 
-    public Estudiante(String nombre, String rut, String email) {
-        super(nombre, rut);
+    public Estudiante(String rut, String nombre, String email) {
+        super(rut,nombre);
         this.email = email;
     }
 

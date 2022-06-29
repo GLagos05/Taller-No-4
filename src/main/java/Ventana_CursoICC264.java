@@ -41,7 +41,7 @@ public class Ventana_CursoICC264 extends Ventana{
 
     private void listaDesplegable() {
         DatosEstudiante datosEstudiante = GestorDatosEstudiante.leerArchivoEstudiantes(new DatosEstudiante(),"target/ICC264.txt");
-        listaRut = generarListaDesplegable(datosEstudiante.extraerRut(),20,40,100,20);
+        listaRut = generarListaDesplegable(datosEstudiante.extraerRut(),20,40,300,20);
         this.add(listaRut);
     }
 

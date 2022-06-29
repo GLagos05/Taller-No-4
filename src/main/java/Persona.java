@@ -2,7 +2,7 @@ public class Persona {
     protected String nombre;
     protected String rut;
 
-    public Persona(String nombre, String rut) {
+    public Persona(String rut, String nombre) {
         this.nombre = nombre;
         this.rut = rut;
     }
