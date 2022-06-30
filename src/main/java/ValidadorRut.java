@@ -13,13 +13,13 @@ public class ValidadorRut {
     }
 
     private static String tomarDigito(String rut) {
-        return rut.substring(rut.length()-1);
+        return rut.substring(rut.length()-3,rut.length()-2);
     }
 
     public static String tomarNumeros(String rut) {
         rut = rut.replace(".","");
         rut = rut.replace("-","");
-        return rut.substring(0,rut.length()-1);
+        return rut.substring(0,rut.length()-3);
     }
 
     public static boolean validarNumeros(String rutSinDigito) {

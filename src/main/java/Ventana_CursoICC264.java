@@ -3,21 +3,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Ventana_CursoICC264 extends Ventana{
-    JComboBox listaRut;
-    JLabel etiquetaNombre;
-    JLabel etiquetaEmail;
-    JTextField textoNombre;
-    JTextField textoEmail;
+    JLabel etiquetaNombre, etiquetaEmail;
+    JTextField textoNombre, textoEmail;
+    Curso curso;
 
-    public Ventana_CursoICC264(String nombre, int largoX, int largoY) {
+    public Ventana_CursoICC264(String nombre, int largoX, int largoY, Curso curso) {
         super(nombre, largoX, largoY);
+        this.curso = new Curso();
         iniciarComponentes();
     }
 
     private void iniciarComponentes() {
         panelVentana();
-        listaDesplegable();
         etiquetas();
+        listaDesplegable();
         cajasTexto();
         botones();
     }
@@ -28,32 +27,48 @@ public class Ventana_CursoICC264 extends Ventana{
     }
 
     private void etiquetas() {
-        generarJLabel(etiquetaNombre,"Nombre: ",20,100,100,20);
-        generarJLabel(etiquetaEmail,"Email: ", 20,140,100,20);
+        generarJLabel(etiquetaNombre,"Nombre: ",20,100,70,20);
+        generarJLabel(etiquetaEmail,"Email: ", 20,140,70,20);
     }
 
     private void cajasTexto() {
-        textoNombre = generarJTextField(140,100,100,20);
+        textoNombre = generarJTextField(90,100,230,20);
+        textoNombre.setEnabled(false);
+        textoNombre.setText("Nombre Estudiante");
         this.add(textoNombre);
-        textoEmail = generarJTextField(140,140,100,20);
+        textoEmail = generarJTextField(90,140,230,20);
+        textoEmail.setEnabled(false);
+        textoEmail.setText("Email Estudiante");
         this.add(textoEmail);
     }
 
     private void listaDesplegable() {
-        DatosEstudiante datosEstudiante = GestorDatosEstudiante.leerArchivoEstudiantes(new DatosEstudiante(),"target/ICC264.txt");
-        listaRut = generarListaDesplegable(datosEstudiante.extraerRut(),20,40,300,20);
+        JComboBox listaRut = generarListaDesplegable(curso.obtenerListaRuts(curso),20,40,150,20);
         this.add(listaRut);
+
+        listaRut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textoNombre.setText(curso.buscarNombreEstudiante(listaRut.getSelectedItem().toString()));
+                textoEmail.setText(curso.buscarEmailEstudiante(listaRut.getSelectedItem().toString()));
+            }
+        });
     }
 
     private void botones() {
-        JButton botonNuevoEstudiante = generarBoton("Nuevo Estudiante",20,200,100,20);
+        JButton botonNuevoEstudiante = generarBoton("Nuevo Estudiante",140,180,150,20);
         this.add(botonNuevoEstudiante);
 
         botonNuevoEstudiante.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Ventana_AgregarEstudianteICC264 ventana_agregarEstudianteICC264 = new Ventana_AgregarEstudianteICC264("Agregar Estudiante ICC264",500,500);
+                Ventana_AgregarEstudianteICC264.abrirVentana(curso);
+                dispose();
             }
         });
+    }
+
+    public static void abrirVentana(Curso curso){
+        Ventana_CursoICC264 ventana_cursoICC264 = new Ventana_CursoICC264("Curso ICC264", 350,260,curso);
     }
 }

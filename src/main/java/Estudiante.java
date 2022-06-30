@@ -16,6 +16,6 @@ public class Estudiante extends Persona{
 
     @Override
     public String toString() {
-        return  rut + "," +nombre + "," + email;
+        return  rut + ";" +nombre + ";" + email;
     }
 }
