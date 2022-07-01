@@ -1,3 +1,7 @@
+package guis;
+
+import dominio.Curso;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,19 +36,19 @@ public class Ventana_AgregarEstudianteICC264 extends Ventana{
     }
 
     private void cajasTexto() {
-        textoRut = generarJTextField(100,40,170,20);
+        textoRut = generarJTextField(90,40,230,20);
         this.add(textoRut);
-        textoNombre = generarJTextField(100,80,170,20);
+        textoNombre = generarJTextField(90,80,230,20);
         this.add(textoNombre);
-        textoEmail = generarJTextField(100,120,170,20);
+        textoEmail = generarJTextField(90,120,230,20);
         this.add(textoEmail);
 
     }
 
     private void botones() {
-        JButton botonAgregar = generarBoton("Agregar",20,160,100,20);
+        JButton botonAgregar = generarBoton("Agregar",20,180,100,20);
         this.add(botonAgregar);
-        JButton botonCancelar = generarBoton("Cancelar",160,160,100,20);
+        JButton botonCancelar = generarBoton("Cancelar",160,180,100,20);
         this.add(botonCancelar);
 
         botonAgregar.addActionListener(new ActionListener() {
@@ -52,7 +56,7 @@ public class Ventana_AgregarEstudianteICC264 extends Ventana{
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (curso.agregarEstudiantes(textoRut.getText(),textoNombre.getText(),textoEmail.getText())){
-                        JOptionPane.showMessageDialog(botonAgregar,"Estudiante registrado correctamente","Mensaje Informativo",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(botonAgregar,"dominio.Estudiante registrado correctamente","Mensaje Informativo",JOptionPane.INFORMATION_MESSAGE);
                         Ventana_CursoICC264.abrirVentana(curso);
                         dispose();
                     }else{
@@ -73,6 +77,6 @@ public class Ventana_AgregarEstudianteICC264 extends Ventana{
     }
 
     public static void abrirVentana(Curso curso){
-        Ventana_AgregarEstudianteICC264 ventana_agregarEstudianteICC264 = new Ventana_AgregarEstudianteICC264("Agregar Estudiante ICC264",320,260,curso);
+        Ventana_AgregarEstudianteICC264 ventana_agregarEstudianteICC264 = new Ventana_AgregarEstudianteICC264("Agregar Estudiante ICC264", 350,260,curso);
     }
 }

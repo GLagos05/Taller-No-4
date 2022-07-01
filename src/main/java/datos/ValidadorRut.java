@@ -1,3 +1,5 @@
+package datos;
+
 public class ValidadorRut {
 
     public static boolean validarRut(String rut) {

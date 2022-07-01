@@ -1,3 +1,7 @@
+package guis;
+
+import dominio.Curso;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,6 +35,19 @@ public class Ventana_CursoICC264 extends Ventana{
         generarJLabel(etiquetaEmail,"Email: ", 20,140,70,20);
     }
 
+    private void listaDesplegable() {
+        JComboBox listaRut = generarListaDesplegable(curso.obtenerListaRuts(curso),20,40,150,20);
+        this.add(listaRut);
+
+        listaRut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textoNombre.setText(curso.buscarEstudiante(listaRut.getSelectedItem().toString()).getNombre());
+                textoEmail.setText(curso.buscarEstudiante(listaRut.getSelectedItem().toString()).getEmail());
+            }
+        });
+    }
+
     private void cajasTexto() {
         textoNombre = generarJTextField(90,100,230,20);
         textoNombre.setEnabled(false);
@@ -40,19 +57,6 @@ public class Ventana_CursoICC264 extends Ventana{
         textoEmail.setEnabled(false);
         textoEmail.setText("Email Estudiante");
         this.add(textoEmail);
-    }
-
-    private void listaDesplegable() {
-        JComboBox listaRut = generarListaDesplegable(curso.obtenerListaRuts(curso),20,40,150,20);
-        this.add(listaRut);
-
-        listaRut.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                textoNombre.setText(curso.buscarNombreEstudiante(listaRut.getSelectedItem().toString()));
-                textoEmail.setText(curso.buscarEmailEstudiante(listaRut.getSelectedItem().toString()));
-            }
-        });
     }
 
     private void botones() {
